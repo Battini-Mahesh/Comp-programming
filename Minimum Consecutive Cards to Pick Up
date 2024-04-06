@@ -1,0 +1,21 @@
+class Solution:
+    def minimumCardPickup(self, cards: List[int]) -> int:
+        # s=len(cards)
+        # windowSize = 2
+        # while windowSize <=s:
+        #     slidingWindowCount = s-windowSize + 1
+        #     index = 0
+        #     while slidingWindowCount >0:
+        #         if cards[index]== cards[windowSize+index-1]:
+        #             return windowSize
+        #         index+=1
+        #         slidingWindowCount-=1
+        #     windowSize+=1
+        # return -1
+        ans = math.inf
+        lastSeen = { }
+        for i, card in enumerate(cards):
+            if card in lastSeen:
+                ans = min(ans,i - lastSeen[card]+1)
+            lastSeen[card] = i
+        return -1 if ans == math.inf else ans
